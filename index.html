@@ -2,38 +2,95 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <title>Panorama 16207_MP_2025</title>
+  <title>Virtual Tour - 11211_MP_2024</title>
   <style>
     html, body {
       margin: 0;
       height: 100%;
       overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    #buttons {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+      display: block;
+      width: 250px;
+      transition: width 0.3s;
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .nav-button {
+      padding: 10px 16px;
+      margin: 5px 0;
+      font-size: 14px;
+      background-color: #ffffffcc;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      width: 48%;
+    }
+
+    .nav-button:hover {
+      background-color: #ddd;
     }
 
     #panorama {
       width: 100%;
       height: 100%;
+      position: absolute;
+      bottom: 10px;
+    }
+
+    #buttons.hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
+  <div id="buttons">
+    <div class="button-row">
+      <!-- Przyciski prowadzące do odpowiednich panoram -->
+      <button class="nav-button" onclick="viewer.setPanorama(pano12)">19/10/25</button>
+      <button class="nav-button" onclick="viewer.setPanorama(pano13)">20/10/25</button>
+    </div>
+  </div>
+
   <div id="panorama"></div>
 
-  <!-- Biblioteki Panolens.js i Three.js -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.105.2/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/pchen66/panolens.js@0.10.2/build/panolens.min.js"></script>
 
   <script>
-    const panorama = new PANOLENS.ImagePanorama('12.jpeg');
+    // Inicjalizacja panoram
+    const pano12 = new PANOLENS.ImagePanorama('12.jpeg'); // Panorama 19/10/25
+    const pano13 = new PANOLENS.ImagePanorama('13.jpeg'); // Panorama 20/10/25
 
     const viewer = new PANOLENS.Viewer({
       container: document.querySelector('#panorama'),
-      autoRotate: true,
-      autoRotateSpeed: 0.3,
-      controlBar: false // ukrywa interfejs
+      output: 'console',
+      autoRotate: false
     });
 
-    viewer.add(panorama);
+    // Dodanie panoram do widoku
+    viewer.add(pano12);
+    viewer.add(pano13);
+
+    // Ustawienie początkowej panoramy
+    viewer.setPanorama(pano13); // Startujemy od 13.jpeg
   </script>
 </body>
 </html>
+
