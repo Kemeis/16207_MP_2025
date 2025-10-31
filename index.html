@@ -65,6 +65,7 @@
       <!-- Przyciski prowadzące do odpowiednich panoram -->
       <button class="nav-button" onclick="viewer.setPanorama(pano12)">19/10/25</button>
       <button class="nav-button" onclick="viewer.setPanorama(pano13)">20/10/25</button>
+      <button class="nav-button" onclick="viewer.setPanorama(panoBase)">Basement 31/10/25</button>
     </div>
   </div>
 
@@ -77,7 +78,9 @@
     // Inicjalizacja panoram
     const pano12 = new PANOLENS.ImagePanorama('12.jpeg'); // Panorama 19/10/25
     const pano13 = new PANOLENS.ImagePanorama('13.jpeg'); // Panorama 20/10/25
+    const panoBase = new PANOLENS.ImagePanorama('base.jpeg'); // Panorama Basement 31/10/25
 
+    // Utworzenie widoku
     const viewer = new PANOLENS.Viewer({
       container: document.querySelector('#panorama'),
       output: 'console',
@@ -87,9 +90,10 @@
     // Dodanie panoram do widoku
     viewer.add(pano12);
     viewer.add(pano13);
+    viewer.add(panoBase);
 
-    // Ustawienie początkowej panoramy
-    viewer.setPanorama(pano13); // Startujemy od 13.jpeg
+    // Ustawienie panoramy startowej
+    viewer.setPanorama(pano13); // Start od 20/10/25
   </script>
 </body>
 </html>
